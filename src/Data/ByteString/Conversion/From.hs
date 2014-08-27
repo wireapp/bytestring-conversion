@@ -20,6 +20,7 @@ import Data.Attoparsec.ByteString.Char8 (signed, decimal, double, hexadecimal)
 import Data.Bits (Bits)
 import Data.ByteString (ByteString, elem)
 import Data.ByteString.Conversion.Internal
+import Data.CaseInsensitive (CI, FoldCase, mk)
 import Data.Int
 import Data.Maybe (isJust)
 import Data.Text (Text)
@@ -68,6 +69,9 @@ instance FromByteString Lazy.ByteString where
 -- | A (flat) comma-separated list of values without spaces.
 instance FromByteString a => FromByteString (List a) where
     parser = parseList
+
+instance (FoldCase a, FromByteString a) => FromByteString (CI a) where
+    parser = mk <$> parser
 
 -- | UTF-8 is assumed as encoding format.
 instance FromByteString Char where

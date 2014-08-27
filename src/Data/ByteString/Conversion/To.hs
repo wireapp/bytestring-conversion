@@ -8,7 +8,6 @@
 
 module Data.ByteString.Conversion.To
     ( ToByteString (..)
-    , Builder
     , toByteString
     , toByteString'
     , runBuilder
@@ -18,6 +17,7 @@ import Data.ByteString (ByteString)
 import Data.ByteString.Conversion.Internal
 import Data.ByteString.Lazy.Builder
 import Data.ByteString.Lazy.Builder.Extras hiding (runBuilder)
+import Data.CaseInsensitive (CI, original)
 import Data.Double.Conversion.Text
 import Data.Int
 import Data.List (intersperse)
@@ -74,6 +74,9 @@ instance ToByteString a => ToByteString (List a) where
 instance ToByteString Bool where
     builder True  = byteString "true"
     builder False = byteString "false"
+
+instance ToByteString a => ToByteString (CI a) where
+    builder = builder . original
 
 toByteString :: ToByteString a => a -> L.ByteString
 toByteString = runBuilder . builder
