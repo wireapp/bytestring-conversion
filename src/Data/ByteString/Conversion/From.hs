@@ -31,6 +31,8 @@ import Prelude hiding (elem)
 import qualified Data.Attoparsec.ByteString.Lazy as Lazy
 import qualified Data.ByteString.Lazy            as Lazy
 import qualified Data.Text                       as T
+import qualified Data.Text.Lazy                  as TL
+import qualified Data.Text.Lazy.Encoding         as TL
 
 -- | Parse 'ByteString's.
 class FromByteString a where
@@ -88,6 +90,10 @@ instance FromByteString [Char] where
 -- | UTF-8 is assumed as encoding format.
 instance FromByteString Text where
     parser = takeByteString >>= text
+
+-- | UTF-8 is assumed as encoding format.
+instance FromByteString TL.Text where
+    parser = takeLazyByteString >>= ltext
 
 instance FromByteString Bool where
     parser =
@@ -159,3 +165,8 @@ parseList = atEnd >>= \e ->
 
 text :: ByteString -> Parser Text
 text = either (fail . ("Invalid UTF-8: " ++) . show) return . decodeUtf8'
+{-# INLINE text #-}
+
+ltext :: Lazy.ByteString -> Parser TL.Text
+ltext = either (fail . ("Invalid UTF-8: " ++) . show) return . TL.decodeUtf8'
+{-# INLINE ltext #-}
