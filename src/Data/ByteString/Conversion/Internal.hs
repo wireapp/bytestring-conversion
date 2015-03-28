@@ -9,6 +9,7 @@ module Data.ByteString.Conversion.Internal where
 import Control.Applicative
 import Data.Bits (Bits)
 import Text.Printf (PrintfArg)
+import Prelude
 
 -- | Newtype wrapper to parse and produce integral numbers in
 -- hexadecimal format

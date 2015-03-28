@@ -17,6 +17,7 @@ import Test.QuickCheck
 import Test.Tasty
 import Test.Tasty.QuickCheck
 import Text.Printf
+import Prelude
 
 tests :: TestTree
 tests = testGroup "Properties"
