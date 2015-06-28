@@ -41,7 +41,7 @@ library
       , attoparsec        >= 0.10   && < 1.0
       , bytestring        >= 0.10.4 && < 1.0
       , case-insensitive  >= 1.2    && < 2.0
-      , double-conversion >= 2.0    && < 3.0
+      , blaze-textual     >= 0.2    && < 0.3
       , text              >= 0.11   && < 2.0
 
 test-suite bytestring-conversion-tests
