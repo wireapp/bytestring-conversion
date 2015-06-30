@@ -3,8 +3,8 @@
 -- file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 {-# LANGUAGE BangPatterns      #-}
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE CPP               #-}
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleInstances #-}
 
 module Data.ByteString.Conversion.To
@@ -31,11 +31,13 @@ import qualified Data.ByteString.Lazy    as L
 import qualified Data.Text               as T
 import qualified Data.Text.Lazy          as TL
 import qualified Data.Text.Lazy.Encoding as TL
-#ifdef WIN
-import           Blaze.Text.Double
+
+#ifdef WINDOWS
+import Blaze.Text.Double
 #else
-import           Data.Double.Conversion.Text
+import Data.Double.Conversion.Text
 #endif
+
 class ToByteString a where
     builder :: a -> Builder
 
@@ -46,7 +48,7 @@ instance ToByteString Text         where builder x = byteString $ encodeUtf8 x
 instance ToByteString TL.Text      where builder x = lazyByteString $ TL.encodeUtf8 x
 instance ToByteString Char         where builder x = builder $ T.singleton x
 instance ToByteString [Char]       where builder x = builder $ TL.pack x
-#ifdef WIN
+#ifdef WINDOWS
 instance ToByteString Float        where builder x = double $ float2Double x
 instance ToByteString Double       where builder x = double x
 #else

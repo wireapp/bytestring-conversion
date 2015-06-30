@@ -1,11 +1,11 @@
 name:                bytestring-conversion
-version:             0.3.0
+version:             0.3.1
 synopsis:            Type-classes to convert values to and from ByteString.
-license:             OtherLicense
+license:             MPL-2.0
 license-file:        LICENSE
 author:              Toralf Wittner
 maintainer:          Toralf Wittner <tw@dtex.org>
-copyright:           (c) 2014 Toralf Wittner
+copyright:           (C) 2014-2015 Toralf Wittner
 homepage:            https://github.com/twittner/bytestring-conversion/
 bug-reports:         https://github.com/twittner/bytestring-conversion/issues
 stability:           experimental
@@ -26,7 +26,6 @@ library
     default-language: Haskell2010
     hs-source-dirs:   src
     ghc-options:      -Wall -O2 -fwarn-tabs -funbox-strict-fields
-    ghc-prof-options: -prof -auto-all
 
     exposed-modules:
         Data.ByteString.Conversion
@@ -44,11 +43,11 @@ library
       , text              >= 0.11   && < 2.0
 
     if os(windows)
-      build-depends: blaze-textual     >= 0.2 && < 0.3
-      cpp-options: -DWIN
+        cpp-options:   -DWINDOWS
+        build-depends: blaze-textual >= 0.2 && < 0.3
     else
-      build-depends: double-conversion >= 2.0 && < 3.0
-     
+        build-depends: double-conversion >= 2.0 && < 3.0
+
 test-suite bytestring-conversion-tests
     type:             exitcode-stdio-1.0
     default-language: Haskell2010
