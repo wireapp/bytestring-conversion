@@ -54,7 +54,6 @@ test-suite bytestring-conversion-tests
     hs-source-dirs:   test
     main-is:          Tests.hs
     ghc-options:      -Wall -O2 -fwarn-tabs
-    ghc-prof-options: -prof -auto-all
 
     other-modules:
         Properties
