@@ -3,6 +3,7 @@
 -- file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE DeriveTraversable          #-}
 
 module Data.ByteString.Conversion.Internal where
 
@@ -35,4 +36,6 @@ newtype List a = List { fromList :: [a] }
              , Functor
              , Applicative
              , Monad
+             , Foldable
+             , Traversable
              )

@@ -1,5 +1,5 @@
 name:                bytestring-conversion
-version:             0.3.1
+version:             0.4.0
 synopsis:            Type-classes to convert values to and from ByteString.
 license:             MPL-2.0
 license-file:        LICENSE
